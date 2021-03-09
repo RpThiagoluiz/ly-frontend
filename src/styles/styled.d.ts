@@ -16,6 +16,7 @@ declare module "styled-components" {
         graySecondary: string;
         grayTeriary: string;
         grayQuaternary: string;
+        white: string;
       };
       text: {
         white: string;

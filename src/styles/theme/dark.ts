@@ -13,6 +13,7 @@ export default {
       graySecondary: "#969696",
       grayTeriary: "#7070705A",
       grayQuaternary: "#00000029",
+      white: "#FFFFFF",
     },
     text: {
       white: "#ffffff",
