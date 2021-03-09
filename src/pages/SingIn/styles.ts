@@ -2,6 +2,7 @@ import styled, { keyframes } from "styled-components";
 
 //Icons
 import { ArrowRight } from "@styled-icons/fa-solid/ArrowRight";
+import { Github } from "@styled-icons/bootstrap/Github";
 
 const animate = keyframes`
 0%{
@@ -29,14 +30,6 @@ export const Container = styled.div`
   justify-content: center;
 
   background-color: ${({ theme }) => theme.colors.background.black};
-
-  > img {
-    width: 128px;
-    height: 128px;
-
-    margin-bottom: 24px;
-    animation: ${animate}.9s ease-in-out;
-  }
 `;
 
 export const UserDate = styled.form`
@@ -71,6 +64,16 @@ export const UserDate = styled.form`
 
     background-color: ${({ theme }) => theme.colors.buttons.yellow};
   }
+`;
+
+export const GithubIcon = styled(Github)`
+  width: 128px;
+  height: 128px;
+
+  color: ${({ theme }) => theme.colors.buttons.yellow};
+
+  margin-bottom: 24px;
+  animation: ${animate}.9s ease-in-out;
 `;
 
 export const RightArrowIcon = styled(ArrowRight)`

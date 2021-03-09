@@ -2,10 +2,6 @@ import { NavLink } from "react-router-dom";
 
 //Styles
 import { Container, HomeIcon, GithubIcon, FollowIcon } from "./styles";
-//Icons
-import homeIcon from "../../assets/icons/home.svg";
-import githubRepoIcon from "../../assets/icons/githubRepo.svg";
-import followIcon from "../../assets/icons/follow.svg";
 
 const NavBar = () => (
   <Container>

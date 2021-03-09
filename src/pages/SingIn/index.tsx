@@ -1,10 +1,9 @@
-import { Container, UserDate, RightArrowIcon } from "./styles";
-//Icons
-import githubIcon from "../../assets/icons/github.svg";
+//Styles
+import { Container, GithubIcon, UserDate, RightArrowIcon } from "./styles";
 
 const SingIn = () => (
   <Container>
-    <img src={githubIcon} alt="github Icon" />
+    <GithubIcon />
     <UserDate>
       <input type="text" placeholder="Usuário" required />
       <button>
