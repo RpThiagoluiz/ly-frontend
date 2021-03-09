@@ -1,8 +1,8 @@
 import { Container } from "./styles";
 
-const SingIn = () => (
+const Home = () => (
   <Container>
-    <h1>SingIn</h1>
+    <h1>Home</h1>
   </Container>
 );
-export default SingIn;
+export default Home;

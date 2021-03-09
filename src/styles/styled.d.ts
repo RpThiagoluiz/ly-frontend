@@ -7,9 +7,9 @@ declare module "styled-components" {
     colors: {
       background: {
         black: string;
+        lightDark: string;
         darkGray: string;
         gray: string;
-        lightGray: string;
       };
       details: {
         grayPrimary: string;
@@ -19,6 +19,7 @@ declare module "styled-components" {
       };
       text: {
         white: string;
+        gray: string;
         black: string;
       };
       buttons: {
