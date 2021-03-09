@@ -1,7 +1,23 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 //Icons
 import { ArrowRight } from "@styled-icons/fa-solid/ArrowRight";
+
+const animate = keyframes`
+0%{
+  transform: translate(-100px);
+  opacity:0;
+}
+
+50% {
+  opacity:0.3;
+}
+
+100% {
+  transform: translateY(0px);
+  opacity:1;
+}
+`;
 
 export const Container = styled.section`
   width: 100%;
@@ -37,6 +53,8 @@ export const Container = styled.section`
 
     background-color: ${({ theme }) => theme.colors.buttons.yellow};
   }
+
+  animation: ${animate}.9s ease-in-out;
 `;
 
 export const Content = styled.div`

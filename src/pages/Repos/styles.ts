@@ -41,6 +41,8 @@ export const Content = styled.section`
   max-height: calc(100vh - 68px);
   width: 100%;
 
+  margin-bottom: 80px; //NavBar Height
+
   overflow-y: auto;
 
   ::-webkit-scrollbar {

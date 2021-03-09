@@ -1,9 +1,25 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 //Icons
 import { Star } from "@styled-icons/boxicons-regular/Star";
 import { Lock } from "@styled-icons/bootstrap/Lock";
 import { Unlock } from "@styled-icons/bootstrap/Unlock";
+
+const animate = keyframes`
+0%{
+  transform: translate(-100px);
+  opacity:0;
+}
+
+50% {
+  opacity:0.3;
+}
+
+100% {
+  transform: translateY(0px);
+  opacity:1;
+}
+`;
 
 export const Container = styled.section`
   width: 100%;
@@ -11,8 +27,6 @@ export const Container = styled.section`
 
   position: relative;
   padding: 18px;
-
-  margin-bottom: 80px; //NavBar Height
 
   border-bottom: 1px solid ${({ theme }) => theme.colors.details.grayTeriary};
 
@@ -31,6 +45,8 @@ export const Container = styled.section`
   }
 
   overflow-x: hidden;
+
+  animation: ${animate}.9s ease-in-out;
 `;
 
 export const Content = styled.section`
@@ -44,7 +60,7 @@ export const Content = styled.section`
 
   > p {
     font-size: 15px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
   }
 `;
 
