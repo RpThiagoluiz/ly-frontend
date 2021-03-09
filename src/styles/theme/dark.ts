@@ -4,8 +4,8 @@ export default {
   colors: {
     background: {
       black: "#000000",
-      lightDark: "#1F1F1F",
-      darkGray: "#3E3E3E",
+      darkGray: "#1F1F1F",
+      lightGray: "#3E3E3E",
       gray: "#292929",
     },
     details: {

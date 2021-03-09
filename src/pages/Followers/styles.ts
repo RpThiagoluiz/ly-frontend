@@ -23,6 +23,8 @@ export const Header = styled.section`
   align-items: center;
   justify-content: center;
 
+  padding: 12px;
+
   color: ${({ theme }) => theme.colors.text.white};
   background-color: ${({ theme }) => theme.colors.background.black};
 

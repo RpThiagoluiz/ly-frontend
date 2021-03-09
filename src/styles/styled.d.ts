@@ -7,8 +7,8 @@ declare module "styled-components" {
     colors: {
       background: {
         black: string;
-        lightDark: string;
         darkGray: string;
+        lightGray: string;
         gray: string;
       };
       details: {

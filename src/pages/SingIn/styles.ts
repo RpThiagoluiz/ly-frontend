@@ -6,7 +6,7 @@ import { Github } from "@styled-icons/bootstrap/Github";
 
 const animate = keyframes`
 0%{
-  transform: translatey(-100px);
+  transform: translateY(-100px);
   opacity:0;
 }
 
@@ -73,7 +73,7 @@ export const GithubIcon = styled(Github)`
   color: ${({ theme }) => theme.colors.buttons.yellow};
 
   margin-bottom: 24px;
-  animation: ${animate}.9s ease-in-out;
+  animation: ${animate} 1.5s ease-in;
 `;
 
 export const RightArrowIcon = styled(ArrowRight)`

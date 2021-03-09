@@ -1,9 +1,13 @@
+//Components
 import NavBar from "../../components/NavBar";
+import UserProfile from "../../components/UserProfile";
+
+//Styles
 import { Container } from "./styles";
 
 const Home = () => (
   <Container>
-    <h1>Home</h1>
+    <UserProfile />
     <NavBar />
   </Container>
 );
