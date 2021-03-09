@@ -1,5 +1,8 @@
 import styled, { keyframes } from "styled-components";
 
+//Icons
+import { ArrowRight } from "@styled-icons/fa-solid/ArrowRight";
+
 const animate = keyframes`
 0%{
   transform: translatey(-100px);
@@ -67,12 +70,11 @@ export const UserDate = styled.form`
     box-shadow: 0 3px 6px #0000001d;
 
     background-color: ${({ theme }) => theme.colors.buttons.yellow};
-
-    > img {
-      width: 18px;
-      height: 18px;
-
-      margin-left: 13px;
-    }
   }
+`;
+
+export const RightArrowIcon = styled(ArrowRight)`
+  width: 18px;
+  height: 18px;
+  margin-left: 13px;
 `;

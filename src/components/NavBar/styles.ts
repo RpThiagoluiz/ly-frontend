@@ -1,5 +1,10 @@
 import styled from "styled-components";
 
+//Icons
+import { Home } from "@styled-icons/boxicons-regular/Home";
+import { Github } from "@styled-icons/feather/Github";
+import { PeopleOutline } from "@styled-icons/evaicons-outline/PeopleOutline";
+
 export const Container = styled.nav`
   width: 100%;
   height: 80px;
@@ -27,15 +32,22 @@ export const Container = styled.nav`
     font-size: 15px;
     text-decoration: none;
     //Active
-    color: black;
-    opacity: 0.5;
-
-    > img {
-      width: 26px;
-      height: 26px;
-    }
+    color: ${({ theme }) => theme.colors.details.grayPrimary};
   }
   .navlink-active {
-    opacity: 1;
+    color: ${({ theme }) => theme.colors.background.black};
   }
+`;
+
+export const HomeIcon = styled(Home)`
+  width: 26px;
+  height: 26px;
+`;
+export const GithubIcon = styled(Github)`
+  width: 26px;
+  height: 26px;
+`;
+export const FollowIcon = styled(PeopleOutline)`
+  width: 26px;
+  height: 26px;
 `;
