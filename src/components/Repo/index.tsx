@@ -7,12 +7,6 @@ import {
   UnlockIcon,
 } from "./styles";
 
-interface RepoProps {
-  name: string;
-  description: string;
-  stars?: number;
-}
-
 const Repo = () => (
   <Container>
     <Content>

@@ -32,7 +32,7 @@ export const Container = styled.div`
   background-color: ${({ theme }) => theme.colors.background.black};
 `;
 
-export const UserDate = styled.form`
+export const UserDateForm = styled.form`
   > input {
     width: 340px;
 
