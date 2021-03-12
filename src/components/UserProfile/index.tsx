@@ -10,11 +10,11 @@ import {
 } from "./styles";
 
 const UserProfile = () => {
-  const { singOut } = useAuth();
+  const { singOut, userNameInput } = useAuth();
   return (
     <Container>
       <Header>
-        <span>#NomeNoGithub</span>
+        <span># {userNameInput}</span>
         <img src="https://github.com/RpThiagoluiz.png" alt="Avatar pessoal" />
         <div>
           <small>Sair</small>

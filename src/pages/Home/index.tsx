@@ -5,10 +5,12 @@ import UserProfile from "../../components/UserProfile";
 //Styles
 import { Container } from "./styles";
 
-const Home = () => (
-  <Container>
-    <UserProfile />
-    <NavBar />
-  </Container>
-);
+const Home = () => {
+  return (
+    <Container>
+      <UserProfile />
+      <NavBar />
+    </Container>
+  );
+};
 export default Home;

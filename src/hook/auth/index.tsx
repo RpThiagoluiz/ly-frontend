@@ -4,6 +4,7 @@ interface AuthContext {
   logged: boolean;
   singIn(gitName: string): void;
   singOut(): void;
+  userNameInput: string;
 }
 
 interface AuthProviderProps {
@@ -17,11 +18,14 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     const isLogged = localStorage.getItem("@ly-frontend:on");
     return !!isLogged;
   });
+  const [userNameInput, setUserNameInput] = useState("");
 
   const singIn = (gitName: string) => {
-    if (gitName === "RpThiagoluiz")
+    if (gitName !== "") {
       localStorage.setItem("@ly-frontend:on", "true");
-    setLogged(true);
+      setUserNameInput(gitName);
+      setLogged(true);
+    }
   };
 
   const singOut = () => {
@@ -30,7 +34,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
   };
 
   return (
-    <AuthContext.Provider value={{ logged, singIn, singOut }}>
+    <AuthContext.Provider value={{ logged, singIn, singOut, userNameInput }}>
       {children}
     </AuthContext.Provider>
   );

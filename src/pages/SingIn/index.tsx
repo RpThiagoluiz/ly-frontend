@@ -47,7 +47,7 @@ const SingIn = () => {
         <input
           type="text"
           placeholder="Usuário"
-          required
+          value={gitName}
           onChange={(e) => setGitname(e.target.value)}
         />
         <button onClick={handleGitname} type="submit">
