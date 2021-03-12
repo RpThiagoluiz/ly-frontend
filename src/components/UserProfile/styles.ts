@@ -1,7 +1,23 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 //Icons
 import { Exit } from "@styled-icons/ionicons-outline/Exit";
+
+const animate = keyframes`
+0%{
+  transform: translate(-100px);
+  opacity:0;
+}
+
+50% {
+  opacity:0.3;
+}
+
+100% {
+  transform: translateY(0px);
+  opacity:1;
+}
+`;
 
 export const Container = styled.section`
   color: ${({ theme }) => theme.colors.text.white};
@@ -60,6 +76,8 @@ export const UserInfo = styled.section`
 
     background-color: ${({ theme }) => theme.colors.buttons.yellow};
   }
+
+  animation: ${animate}.3s ease-in;
 `;
 
 export const UserFollowInfo = styled.section`
@@ -79,6 +97,7 @@ export const UserFollowInfo = styled.section`
       font-size: 17px;
     }
   }
+  animation: ${animate}.4s ease-in;
 `;
 
 export const UserBioInfo = styled.section`
@@ -103,6 +122,8 @@ export const UserBioInfo = styled.section`
 
     background-color: ${({ theme }) => theme.colors.buttons.yellow};
   }
+
+  animation: ${animate}.5s ease-in;
 `;
 
 export const ExitIcon = styled(Exit)`

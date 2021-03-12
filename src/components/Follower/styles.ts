@@ -54,7 +54,7 @@ export const Container = styled.section`
     background-color: ${({ theme }) => theme.colors.buttons.yellow};
   }
 
-  animation: ${animate}.9s ease-in-out;
+  animation: ${animate}1.2s ease-in;
 `;
 
 export const Content = styled.div`

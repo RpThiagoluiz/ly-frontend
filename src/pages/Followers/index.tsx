@@ -2,6 +2,7 @@ import { useHistory } from "react-router-dom";
 import { useUser } from "../../hook/ApiCallContext";
 //Components
 import Follower from "../../components/Follower";
+import NoFollower from "../../components/NoFollower";
 import NavBar from "../../components/NavBar";
 //Styles
 import { Container, Header, Content, LeftArrowIcon } from "./styles";
@@ -15,10 +16,6 @@ const Followers = () => {
       <Follower key={follower.login} followers={follower} />
     ));
 
-  const followersLengthZero = () => (
-    <h1>Seja o primeiro a seguir esse MITO Do lol!</h1>
-  );
-
   return (
     <Container>
       <Header>
@@ -26,7 +23,7 @@ const Followers = () => {
         <h2>{dataUser.followers} seguidores</h2>
       </Header>
       <Content>
-        {followersUser.length > 0 ? successFollowers() : followersLengthZero()}
+        {followersUser.length > 0 ? successFollowers() : <NoFollower />}
       </Content>
       <NavBar />
     </Container>

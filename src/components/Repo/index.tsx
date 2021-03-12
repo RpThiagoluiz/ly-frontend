@@ -11,8 +11,9 @@ interface RepoDataProps {
   repository: {
     name: string;
     description: string;
-    html_url: string; //Star to
     stargazers_count: number;
+    //Not required!
+    html_url: string;
   };
 }
 
@@ -29,8 +30,8 @@ const Repo = ({ repository }: RepoDataProps) => (
       </div>
 
       <div>
-        <LockIcon />
         <UnlockIcon />
+        <LockIcon />
       </div>
     </DetailsContent>
   </Container>

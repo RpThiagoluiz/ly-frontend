@@ -21,6 +21,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
   const [userNameInput, setUserNameInput] = useState("");
 
   const singIn = (gitName: string) => {
+    //ValidgitName
     if (gitName !== "") {
       localStorage.setItem("@ly-frontend:on", "true");
       setUserNameInput(gitName);

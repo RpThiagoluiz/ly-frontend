@@ -97,10 +97,10 @@ export const StarIcon = styled(Star)`
 export const LockIcon = styled(Lock)`
   width: 24px;
   height: 24px;
-  color: ${({ theme }) => theme.colors.buttons.green};
+  color: ${({ theme }) => theme.colors.buttons.red};
 `;
 export const UnlockIcon = styled(Unlock)`
   width: 24px;
   height: 24px;
-  color: ${({ theme }) => theme.colors.buttons.red};
+  color: ${({ theme }) => theme.colors.buttons.green};
 `;

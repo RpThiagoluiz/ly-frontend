@@ -17,16 +17,22 @@ interface HandleUserCallProps {
 interface User {
   login: string;
   name: string;
-  avatar_url: string;
-  html_url: string;
-  repos_url: string;
-  location: string;
   email: string;
+  location: string;
+  company: string;
   bio: string;
+  avatar_url: string;
+  followers_url: string;
+  following_url: string;
+  organizations_url: string;
+  starred_url: string;
   public_repos: number;
   public_gists: number;
   followers: number;
   following: number;
+  //Not Requeired for test!
+  html_url: string;
+  repos_url: string;
 }
 
 interface Repository {
@@ -52,16 +58,22 @@ const UserProvider = ({ children }: HandleUserCallProps) => {
   const [dataUser, setDataUser] = useState<User>({
     login: "",
     name: "",
-    avatar_url: "",
-    html_url: "",
-    repos_url: "",
-    location: "",
     email: "",
+    location: "",
+    company: "",
     bio: "",
+    avatar_url: "",
+    followers_url: "",
+    following_url: "",
+    organizations_url: "",
+    starred_url: "",
     public_repos: 0,
     public_gists: 0,
     followers: 0,
     following: 0,
+    //Not Requeired for test,
+    html_url: "",
+    repos_url: "",
   });
 
   const handleGitUser = (name: string) => {
