@@ -32,6 +32,7 @@ interface Repository {
   name: string;
   description: string;
   html_url: string;
+  stargazers_count: number;
 }
 
 const UserContext = createContext<UserContext>({} as UserContext);
@@ -95,7 +96,7 @@ const UserProvider = ({ children }: HandleUserCallProps) => {
         repositories,
       }}
     >
-      ({children})
+      {children}
     </UserContext.Provider>
   );
 };

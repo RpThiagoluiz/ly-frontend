@@ -17,6 +17,4 @@ html,body,#root{
   outline:0;
 }
 
-
-
 `;
