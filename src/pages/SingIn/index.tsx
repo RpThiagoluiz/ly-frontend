@@ -1,7 +1,7 @@
-import axios from "axios";
-import { useState, MouseEvent } from "react";
+import { useState, useEffect } from "react";
 //hook
 import { useAuth } from "../../hook/auth";
+import { useUser } from "../../hook/ApiCallContext";
 
 //Styles
 import { Container, GithubIcon, UserDateForm, RightArrowIcon } from "./styles";
@@ -27,18 +27,15 @@ interface userData {
 }
 
 const SingIn = () => {
-  const [gitName, setGitname] = useState("");
+  const [gitName, setGitname] = useState("RpThiagoluiz");
   const [dataGitUser, setDataGitUser] = useState<userData[]>([]);
 
   const { singIn } = useAuth();
+  const { handleUserCall } = useUser();
 
-  const handleGitname = () => {
-    axios
-      .get(`https://api.github.com/users/${gitName}`)
-      .then((response) => setDataGitUser(response.data));
-
-    console.log(dataGitUser);
-  };
+  useEffect(() => {
+    handleUserCall();
+  }, []);
 
   return (
     <Container>
@@ -50,7 +47,7 @@ const SingIn = () => {
           value={gitName}
           onChange={(e) => setGitname(e.target.value)}
         />
-        <button onClick={handleGitname} type="submit">
+        <button onClick={handleUserCall} type="submit">
           Entrar
           <RightArrowIcon />
         </button>

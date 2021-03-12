@@ -7,37 +7,19 @@ import {
   UnlockIcon,
 } from "./styles";
 
-const Repo = () => (
+interface RepoDataProps {
+  repository: {
+    name: string;
+    description: string;
+    html_url: string; //Star to
+  };
+}
+
+const Repo = ({ repository }: RepoDataProps) => (
   <Container>
     <Content>
-      <h2>Repo repo - react repo Alfa</h2>
-      <p>
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text ever
-        since the 1500s, when an unknown printer took a galley of type and
-        scrambled it to make a type Lorem Ipsum is simply dummy text of the
-        printing and typesetting industry. Lorem Ipsum has been the industry's
-        standard dummy text ever since the 1500s, when an unknown printer took a
-        galley of type and scrambled it to make a type Lorem Ipsum is simply
-        dummy text of the printing and typesetting industry. Lorem Ipsum has
-        been the industry's standard dummy text ever since the 1500s, when an
-        unknown printer took a galley of type and scrambled it to make a type
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text ever
-        since the 1500s, when an unknown printer took a galley of type and
-        scrambled it to make a type Lorem Ipsum is simply dummy text of the
-        printing and typesetting industry. Lorem Ipsum has been the industry's
-        standard dummy text ever since the 1500s, when an unknown printer took a
-        galley of type and scrambled it to make a type Lorem Ipsum is simply
-        dummy text of the printing and typesetting industry. Lorem Ipsum has
-        been the industry's standard dummy text ever since the 1500s, when an
-        unknown printer took a galley of type and scrambled it to make a type
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text ever
-        since the 1500s, when an unknown printer took a galley of type and
-        scrambled it to make a type Lorem Ipsum is simply dummy text of the
-        printing and typesetting industry.
-      </p>
+      <h2>{repository.name}</h2>
+      <p>{repository.description}</p>
     </Content>
     <DetailsContent>
       <div>

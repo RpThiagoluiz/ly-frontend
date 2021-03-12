@@ -9,13 +9,30 @@ import {
   UserBioInfo,
 } from "./styles";
 
-const UserProfile = () => {
-  const { singOut, userNameInput } = useAuth();
+interface UserInfoProps {
+  user: {
+    login: string;
+    name: string;
+    avatar_url: string;
+    html_url: string;
+    repos_url: string;
+    location: string;
+    email: string;
+    bio: string;
+    public_repos: number;
+    public_gists: number;
+    followers: number;
+    following: number;
+  };
+}
+
+const UserProfile = ({ user }: UserInfoProps) => {
+  const { singOut } = useAuth();
   return (
     <Container>
       <Header>
-        <span># {userNameInput}</span>
-        <img src="https://github.com/RpThiagoluiz.png" alt="Avatar pessoal" />
+        <span># {user.login}</span>
+        <img src={user.avatar_url} alt="Avatar pessoal" />
         <div>
           <small>Sair</small>
           <ExitIcon onClick={singOut} />
@@ -23,38 +40,27 @@ const UserProfile = () => {
       </Header>
       <Content>
         <UserInfo>
-          <h2>Nome SobreNome</h2>
-          <span>Email@exemplo.com</span>
-          <span>Cidade/Estado</span>
+          <h2>{user.name}</h2>
+          <span>{user?.email ?? "Email: Nao Informado"}</span>
+          <span>{user?.location ?? "Local Nao infromado"}</span>
         </UserInfo>
         <UserFollowInfo>
           <div>
-            <h1>320</h1>
+            <h1>{user.followers}</h1>
             <span>Seguidores</span>
           </div>
           <div>
-            <h1>120</h1>
+            <h1>{user.following}</h1>
             <span>Seguindo</span>
           </div>
           <div>
-            <h1>10</h1>
+            <h1>{user.public_repos}</h1>
             <span>Repos</span>
           </div>
         </UserFollowInfo>
         <UserBioInfo>
           <h2>BIO</h2>
-          <p>
-            t is a long established fact that a reader will be distracted by the
-            readable content of a page when looking at its layout. The point of
-            using Lorem Ipsum is that it has a more-or-less normal distribution
-            of letters, as opposed to using 'Content here, content here', making
-            it look like readable English. Many desktop publishing packages and
-            web page editors now use Lorem Ipsum as their default model text,
-            and a search for 'lorem ipsum' will uncover many web sites still in
-            their infancy. Various versions have evolved over the years,
-            sometimes by accident, sometimes on purpose (injected humour and the
-            like).
-          </p>
+          <p>{user.bio}</p>
         </UserBioInfo>
       </Content>
     </Container>

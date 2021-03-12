@@ -1,4 +1,6 @@
 import { useHistory } from "react-router-dom";
+//hook
+import { useUser } from "../../hook/ApiCallContext";
 //Components
 import Repo from "../../components/Repo";
 import NavBar from "../../components/NavBar";
@@ -7,17 +9,17 @@ import { Container, Header, Content, LeftArrowIcon } from "./styles";
 
 const Repos = () => {
   const { goBack } = useHistory();
+  const { repositories, dataUser } = useUser();
   return (
     <Container>
       <Header>
         <LeftArrowIcon onClick={goBack} />
-        <h2>10 repositórios</h2>
+        <h2>{dataUser.public_repos} repositórios</h2>
       </Header>
       <Content>
-        <Repo />
-        <Repo />
-        <Repo />
-        <Repo />
+        {repositories.map((repo) => (
+          <Repo key={repo.name} repository={repo} />
+        ))}
       </Content>
       <NavBar />
     </Container>
