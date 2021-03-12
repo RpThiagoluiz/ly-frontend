@@ -5,8 +5,9 @@ interface UserContext {
   gitUser: string;
   dataUser: User;
   repositories: Repository[];
+  followersUser: Followers[];
   handleUserCall(): void;
-  GetGitUser(name: string): void;
+  handleGitUser(name: string): void;
 }
 
 interface HandleUserCallProps {
@@ -35,11 +36,18 @@ interface Repository {
   stargazers_count: number;
 }
 
+interface Followers {
+  login: string;
+  avatar_url: string;
+  url: string;
+}
+
 const UserContext = createContext<UserContext>({} as UserContext);
 
 const UserProvider = ({ children }: HandleUserCallProps) => {
   const [gitUser, setGitUser] = useState("RpThiagoluiz");
   const [repositories, setRepositories] = useState<Repository[]>([]);
+  const [followersUser, setFollowersUser] = useState<Followers[]>([]);
 
   const [dataUser, setDataUser] = useState<User>({
     login: "",
@@ -56,7 +64,7 @@ const UserProvider = ({ children }: HandleUserCallProps) => {
     following: 0,
   });
 
-  const GetGitUser = (name: string) => {
+  const handleGitUser = (name: string) => {
     setGitUser(name);
   };
 
@@ -65,18 +73,22 @@ const UserProvider = ({ children }: HandleUserCallProps) => {
     const fetchData = () => {
       const userApi = `https://api.github.com/users/${gitUser}`;
       const repoUserApi = `https://api.github.com/users/${gitUser}/repos`;
+      const followersApi = `https://api.github.com/users/${gitUser}/followers`;
 
       const getUserInfo = axios.get(userApi);
       const getRepoUserInfo = axios.get(repoUserApi);
+      const getFollowersInfo = axios.get(followersApi);
 
       axios
-        .all([getUserInfo, getRepoUserInfo])
+        .all([getUserInfo, getRepoUserInfo, getFollowersInfo])
         .then(
           axios.spread((...allData) => {
             const userData = allData[0].data;
             const reposData = allData[1].data;
+            const followerData = allData[2].data;
             setDataUser(userData);
             setRepositories(reposData);
+            setFollowersUser(followerData);
           })
         )
         .catch((err) => {
@@ -90,10 +102,11 @@ const UserProvider = ({ children }: HandleUserCallProps) => {
     <UserContext.Provider
       value={{
         handleUserCall,
-        GetGitUser,
+        handleGitUser,
         dataUser,
         gitUser,
         repositories,
+        followersUser,
       }}
     >
       {children}

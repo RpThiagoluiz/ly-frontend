@@ -1,4 +1,5 @@
 import { useHistory } from "react-router-dom";
+import { useUser } from "../../hook/ApiCallContext";
 //Components
 import Follower from "../../components/Follower";
 import NavBar from "../../components/NavBar";
@@ -7,28 +8,25 @@ import { Container, Header, Content, LeftArrowIcon } from "./styles";
 
 const Followers = () => {
   const { goBack } = useHistory();
+  const { followersUser, dataUser } = useUser();
+
+  const successFollowers = () =>
+    followersUser.map((follower) => (
+      <Follower key={follower.login} followers={follower} />
+    ));
+
+  const followersLengthZero = () => (
+    <h1>Seja o primeiro a seguir esse MITO Do lol!</h1>
+  );
+
   return (
     <Container>
       <Header>
         <LeftArrowIcon onClick={goBack} />
-        <h2>10 seguidores</h2>
+        <h2>{dataUser.followers} seguidores</h2>
       </Header>
       <Content>
-        <Follower />
-        <Follower />
-        <Follower />
-        <Follower />
-        <Follower />
-        <Follower />
-        <Follower />
-        <Follower />
-        <Follower />
-        <Follower />
-        <Follower />
-        <Follower />
-        <Follower />
-        <Follower />
-        <Follower />
+        {followersUser.length > 0 ? successFollowers() : followersLengthZero()}
       </Content>
       <NavBar />
     </Container>
