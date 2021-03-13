@@ -6,6 +6,7 @@ import {
   ReactNode,
 } from "react";
 import axios from "axios";
+import { errorMonitor } from "node:events";
 
 interface GitHubContext {
   gitUser: string;
@@ -65,7 +66,7 @@ interface Error {
 const GitHubContext = createContext<GitHubContext>({} as GitHubContext);
 
 const GitHubProvider = ({ children }: HandleUserCallProps) => {
-  const [gitUser, setGitUser] = useState("Rpthiagoluiz");
+  const [gitUser, setGitUser] = useState("");
   const [repositories, setRepositories] = useState<Repository[]>([]);
   const [followersUser, setFollowersUser] = useState<Followers[]>([]);
 
@@ -93,49 +94,41 @@ const GitHubProvider = ({ children }: HandleUserCallProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState({ show: false, message: "" });
   const [maxRequestsApiCall, setMaxRequestsApiCall] = useState(0);
+
   const handleGitUser = (name: string) => {
     setGitUser(name);
   };
 
-  const handleUserCall = () => {
-    //MultiCalls - axios doc
-    const fetchData = async () => {
-      toggleError();
-      setIsLoading(true);
-      const userApi = `https://api.github.com/users/${gitUser}`;
-      const repoUserApi = `https://api.github.com/users/${gitUser}/repos`;
-      const followersApi = `https://api.github.com/users/${gitUser}/followers`;
+  const handleUserCall = async () => {
+    toggleError();
+    setIsLoading(true);
+    const userApi = `https://api.github.com/users/${gitUser}`;
+    const repoUserApi = `https://api.github.com/users/${gitUser}/repos`;
+    const followersApi = `https://api.github.com/users/${gitUser}/followers`;
 
-      const getUserInfo = axios.get(userApi);
-      const getRepoUserInfo = axios.get(repoUserApi);
-      const getFollowersInfo = axios.get(followersApi);
+    try {
+      const reponse = await axios.get<User>(userApi);
+      setDataUser(reponse.data);
+    } catch (err) {
+      console.log(err);
+      return;
+    }
 
-      const reponse = await getUserInfo.catch((err) => console.log(err));
+    const getRepoUserInfo = axios.get<Repository[]>(repoUserApi);
+    const getFollowersInfo = axios.get<Followers[]>(followersApi);
 
-      if (reponse) {
-        await axios
-          .all([getUserInfo, getRepoUserInfo, getFollowersInfo])
-          .then(
-            axios.spread((...allData) => {
-              const userData = allData[0].data;
-              const reposData = allData[1].data;
-              const followerData = allData[2].data;
-              setDataUser(userData);
-              setRepositories(reposData);
-              setFollowersUser(followerData);
-              setIsLoading(false);
-            })
-          )
-          .catch((err) => {
-            console.log(err);
-          });
-      } else {
-        toggleError(true, "Usuario invalido!");
-        setIsLoading(false);
-      }
-    };
-    fetchData();
+    try {
+      const [repoData, followerData] = await Promise.all([
+        getRepoUserInfo,
+        getFollowersInfo,
+      ]);
+      setRepositories(repoData.data);
+      setFollowersUser(followerData.data);
+    } catch (err) {
+      console.log(err);
+    }
   };
+
   //Github Have a max request for hour. If u dont use token!
   const maxGitRequets = () => {
     axios

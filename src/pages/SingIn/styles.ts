@@ -43,6 +43,7 @@ export const UserDateForm = styled.form`
     box-shadow: 0 3px 6px #0000001d;
 
     font-size: 20px;
+
     color: ${({ theme }) => theme.colors.text.gray};
   }
 

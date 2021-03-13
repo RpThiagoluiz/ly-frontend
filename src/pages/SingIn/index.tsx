@@ -28,7 +28,7 @@ const SingIn = () => {
       <UserDateForm onSubmit={() => singIn(gitUser)}>
         <input
           type="text"
-          placeholder="Digite usuário valido"
+          placeholder={error.show ? error.message : `Digite usuário valido`}
           value={gitUser}
           onChange={(e) => handleGitUser(e.target.value)}
         />

@@ -20,11 +20,11 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     return !!isLogged;
   });
   const [userNameInput, setUserNameInput] = useState("");
-  const { error, maxRequestsApiCall } = useGitHub();
+  const { error } = useGitHub();
 
   const singIn = (gitName: string) => {
     //ValidgitName
-    if (gitName !== "") {
+    if (gitName !== "" && !error) {
       localStorage.setItem("@ly-frontend:on", "true");
       setUserNameInput(gitName);
       setLogged(true);
