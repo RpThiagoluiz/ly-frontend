@@ -6,6 +6,8 @@ interface UserContext {
   dataUser: User;
   repositories: Repository[];
   followersUser: Followers[];
+  isLoading: Boolean;
+  error: Error;
   handleUserCall(): void;
   handleGitUser(name: string): void;
 }
@@ -48,6 +50,11 @@ interface Followers {
   url: string;
 }
 
+interface Error {
+  show: boolean;
+  message: string;
+}
+
 const UserContext = createContext<UserContext>({} as UserContext);
 
 const UserProvider = ({ children }: HandleUserCallProps) => {
@@ -76,13 +83,18 @@ const UserProvider = ({ children }: HandleUserCallProps) => {
     repos_url: "",
   });
 
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState({ show: false, message: "" });
+
   const handleGitUser = (name: string) => {
     setGitUser(name);
   };
 
   const handleUserCall = () => {
     //MultiCalls - axios doc
-    const fetchData = () => {
+    const fetchData = async () => {
+      toggleError();
+      setIsLoading(true);
       const userApi = `https://api.github.com/users/${gitUser}`;
       const repoUserApi = `https://api.github.com/users/${gitUser}/repos`;
       const followersApi = `https://api.github.com/users/${gitUser}/followers`;
@@ -91,23 +103,35 @@ const UserProvider = ({ children }: HandleUserCallProps) => {
       const getRepoUserInfo = axios.get(repoUserApi);
       const getFollowersInfo = axios.get(followersApi);
 
-      axios
-        .all([getUserInfo, getRepoUserInfo, getFollowersInfo])
-        .then(
-          axios.spread((...allData) => {
-            const userData = allData[0].data;
-            const reposData = allData[1].data;
-            const followerData = allData[2].data;
-            setDataUser(userData);
-            setRepositories(reposData);
-            setFollowersUser(followerData);
-          })
-        )
-        .catch((err) => {
-          console.log(err);
-        });
+      const reponse = await getUserInfo.catch((err) => console.log(err));
+
+      if (reponse) {
+        await axios
+          .all([getUserInfo, getRepoUserInfo, getFollowersInfo])
+          .then(
+            axios.spread((...allData) => {
+              const userData = allData[0].data;
+              const reposData = allData[1].data;
+              const followerData = allData[2].data;
+              setDataUser(userData);
+              setRepositories(reposData);
+              setFollowersUser(followerData);
+              setIsLoading(false);
+            })
+          )
+          .catch((err) => {
+            console.log(err);
+          });
+      } else {
+        toggleError(true, "Usuario invalido!");
+        setIsLoading(false);
+      }
     };
     fetchData();
+  };
+
+  const toggleError = (show = false, message = "") => {
+    setError({ show, message });
   };
 
   return (
@@ -119,6 +143,8 @@ const UserProvider = ({ children }: HandleUserCallProps) => {
         gitUser,
         repositories,
         followersUser,
+        isLoading,
+        error,
       }}
     >
       {children}

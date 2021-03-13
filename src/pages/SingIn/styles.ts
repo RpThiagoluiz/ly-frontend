@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+import { useUser } from "../../hook/ApiCallContext";
 
 //Icons
 import { ArrowRight } from "@styled-icons/fa-solid/ArrowRight";
@@ -18,7 +19,6 @@ const animate = keyframes`
   transform: translateY(0px);
   opacity:1;
 }
-
 `;
 
 export const Container = styled.div`
