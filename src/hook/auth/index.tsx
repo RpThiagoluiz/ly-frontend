@@ -1,4 +1,5 @@
 import { createContext, useState, useContext, ReactNode } from "react";
+import { useGitHub } from "../ApiCallContext";
 
 interface AuthContext {
   logged: boolean;
@@ -19,6 +20,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     return !!isLogged;
   });
   const [userNameInput, setUserNameInput] = useState("");
+  const { error, maxRequestsApiCall } = useGitHub();
 
   const singIn = (gitName: string) => {
     //ValidgitName

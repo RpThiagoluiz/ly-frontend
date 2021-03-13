@@ -1,13 +1,20 @@
-import { createContext, useState, useContext, ReactNode } from "react";
+import {
+  createContext,
+  useState,
+  useContext,
+  useEffect,
+  ReactNode,
+} from "react";
 import axios from "axios";
 
-interface UserContext {
+interface GitHubContext {
   gitUser: string;
   dataUser: User;
   repositories: Repository[];
   followersUser: Followers[];
   isLoading: Boolean;
   error: Error;
+  maxRequestsApiCall: number;
   handleUserCall(): void;
   handleGitUser(name: string): void;
 }
@@ -55,10 +62,10 @@ interface Error {
   message: string;
 }
 
-const UserContext = createContext<UserContext>({} as UserContext);
+const GitHubContext = createContext<GitHubContext>({} as GitHubContext);
 
-const UserProvider = ({ children }: HandleUserCallProps) => {
-  const [gitUser, setGitUser] = useState("RpThiagoluiz");
+const GitHubProvider = ({ children }: HandleUserCallProps) => {
+  const [gitUser, setGitUser] = useState("Rpthiagoluiz");
   const [repositories, setRepositories] = useState<Repository[]>([]);
   const [followersUser, setFollowersUser] = useState<Followers[]>([]);
 
@@ -85,7 +92,7 @@ const UserProvider = ({ children }: HandleUserCallProps) => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState({ show: false, message: "" });
-
+  const [maxRequestsApiCall, setMaxRequestsApiCall] = useState(0);
   const handleGitUser = (name: string) => {
     setGitUser(name);
   };
@@ -129,13 +136,32 @@ const UserProvider = ({ children }: HandleUserCallProps) => {
     };
     fetchData();
   };
+  //Github Have a max request for hour. If u dont use token!
+  const maxGitRequets = () => {
+    axios
+      .get("https://api.github.com/rate_limit")
+      .then(({ data }) => {
+        let {
+          rate: { remaing },
+        } = data;
+        setMaxRequestsApiCall(remaing);
+        if (remaing === 0) {
+          toggleError(true, "Número máximo de req/h excedido!");
+        }
+      })
+      .catch((err) => console.log(err));
+  };
 
   const toggleError = (show = false, message = "") => {
     setError({ show, message });
   };
 
+  useEffect(() => {
+    maxGitRequets();
+  }, []);
+
   return (
-    <UserContext.Provider
+    <GitHubContext.Provider
       value={{
         handleUserCall,
         handleGitUser,
@@ -145,17 +171,18 @@ const UserProvider = ({ children }: HandleUserCallProps) => {
         followersUser,
         isLoading,
         error,
+        maxRequestsApiCall,
       }}
     >
       {children}
-    </UserContext.Provider>
+    </GitHubContext.Provider>
   );
 };
 
-const useUser = () => {
-  const context = useContext(UserContext);
+const useGitHub = () => {
+  const context = useContext(GitHubContext);
 
   return context;
 };
 
-export { UserProvider, useUser };
+export { GitHubProvider, useGitHub };

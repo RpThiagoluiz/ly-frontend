@@ -45,6 +45,19 @@ export const Header = styled.section`
     border-radius: 50%;
     border: 3px solid ${({ theme }) => theme.colors.details.white};
   }
+
+  @media (max-width: 590px) {
+    > img {
+      width: 120px;
+      height: 120px;
+    }
+  }
+  @media (max-width: 425px) {
+    > img {
+      width: 96px;
+      height: 96px;
+    }
+  }
 `;
 export const Content = styled.article``;
 
@@ -78,6 +91,37 @@ export const UserInfo = styled.section`
   }
 
   animation: ${animate}.3s ease-in;
+
+  @media (max-width: 840px) {
+    > h2 {
+      font-size: 18px;
+    }
+    > span {
+      font-size: 14px;
+    }
+  }
+  @media (max-width: 590px) {
+    > h2 {
+      font-size: 16px;
+    }
+    > span {
+      font-size: 12px;
+    }
+  }
+  @media (max-width: 425px) {
+    width: 250px;
+    > h2 {
+      font-size: 16px;
+      word-wrap: break-word;
+    }
+  }
+  @media (max-width: 285px) {
+    width: 180px;
+    > h2 {
+      font-size: 14px;
+      word-wrap: break-word;
+    }
+  }
 `;
 
 export const UserFollowInfo = styled.section`
@@ -90,6 +134,9 @@ export const UserFollowInfo = styled.section`
   background-color: #5252525d;
 
   > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     > h1 {
       font-size: 40px;
     }
@@ -98,6 +145,27 @@ export const UserFollowInfo = styled.section`
     }
   }
   animation: ${animate}.4s ease-in;
+
+  @media (max-width: 840px) {
+    > div {
+      > h1 {
+        font-size: 32px;
+      }
+      > span {
+        font-size: 16px;
+      }
+    }
+  }
+  @media (max-width: 590px) {
+    > div {
+      > h1 {
+        font-size: 24px;
+      }
+      > span {
+        font-size: 14px;
+      }
+    }
+  }
 `;
 
 export const UserBioInfo = styled.section`
@@ -124,6 +192,24 @@ export const UserBioInfo = styled.section`
   }
 
   animation: ${animate}.5s ease-in;
+
+  @media (max-width: 840px) {
+    > h2 {
+      font-size: 18px;
+    }
+    > p {
+      font-size: 14px;
+    }
+  }
+
+  @media (max-width: 590px) {
+    > h2 {
+      font-size: 16px;
+    }
+    > p {
+      font-size: 12px;
+    }
+  }
 `;
 
 export const ExitIcon = styled(Exit)`

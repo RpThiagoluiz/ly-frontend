@@ -1,5 +1,5 @@
 import { useHistory } from "react-router-dom";
-import { useUser } from "../../hook/ApiCallContext";
+import { useGitHub } from "../../hook/ApiCallContext";
 //Components
 import Follower from "../../components/Follower";
 import NoFollower from "../../components/NoFollower";
@@ -9,7 +9,7 @@ import { Container, Header, Content, LeftArrowIcon } from "./styles";
 
 const Followers = () => {
   const { goBack } = useHistory();
-  const { followersUser, dataUser } = useUser();
+  const { followersUser, dataUser } = useGitHub();
 
   const successFollowers = () =>
     followersUser.map((follower) => (

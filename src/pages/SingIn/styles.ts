@@ -1,5 +1,4 @@
 import styled, { keyframes } from "styled-components";
-import { useUser } from "../../hook/ApiCallContext";
 
 //Icons
 import { ArrowRight } from "@styled-icons/fa-solid/ArrowRight";

@@ -4,14 +4,14 @@ import App from "./App";
 
 //ContextApi
 import { AuthProvider } from "./hook/auth";
-import { UserProvider } from "./hook/ApiCallContext";
+import { GitHubProvider } from "./hook/ApiCallContext";
 
 ReactDOM.render(
   <React.StrictMode>
     <AuthProvider>
-      <UserProvider>
+      <GitHubProvider>
         <App />
-      </UserProvider>
+      </GitHubProvider>
     </AuthProvider>
   </React.StrictMode>,
   document.getElementById("root")

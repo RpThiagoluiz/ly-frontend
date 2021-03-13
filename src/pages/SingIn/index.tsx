@@ -1,7 +1,7 @@
-import { useState, useEffect, ChangeEvent } from "react";
+import { useEffect } from "react";
 //hook
 import { useAuth } from "../../hook/auth";
-import { useUser } from "../../hook/ApiCallContext";
+import { useGitHub } from "../../hook/ApiCallContext";
 
 //Styles
 import { Container, GithubIcon, UserDateForm, RightArrowIcon } from "./styles";
@@ -11,9 +11,10 @@ const SingIn = () => {
     handleUserCall,
     handleGitUser,
     gitUser,
-    error,
     isLoading,
-  } = useUser();
+    error,
+    maxRequestsApiCall,
+  } = useGitHub();
   const { singIn } = useAuth();
 
   useEffect(() => {

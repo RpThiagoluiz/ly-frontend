@@ -3,13 +3,13 @@ import NavBar from "../../components/NavBar";
 import UserProfile from "../../components/UserProfile";
 
 //hook
-import { useUser } from "../../hook/ApiCallContext";
+import { useGitHub } from "../../hook/ApiCallContext";
 
 //Styles
 import { Container } from "./styles";
 
 const Home = () => {
-  const { dataUser } = useUser();
+  const { dataUser } = useGitHub();
   return (
     <Container>
       <UserProfile user={dataUser} />

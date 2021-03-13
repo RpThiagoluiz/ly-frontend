@@ -1,8 +1,8 @@
-import { useUser } from "../../hook/ApiCallContext";
+import { useGitHub } from "../../hook/ApiCallContext";
 //styles
 import { Container, Content, RightArrowIcon, NoFollowIcon } from "./styles";
 const NoFollower = () => {
-  const { dataUser } = useUser();
+  const { dataUser } = useGitHub();
   return (
     <Container>
       <NoFollowIcon />

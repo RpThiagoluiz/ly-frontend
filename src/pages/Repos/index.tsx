@@ -1,6 +1,6 @@
 import { useHistory } from "react-router-dom";
 //hook
-import { useUser } from "../../hook/ApiCallContext";
+import { useGitHub } from "../../hook/ApiCallContext";
 //Components
 import Repo from "../../components/Repo";
 import NavBar from "../../components/NavBar";
@@ -9,7 +9,7 @@ import { Container, Header, Content, LeftArrowIcon } from "./styles";
 
 const Repos = () => {
   const { goBack } = useHistory();
-  const { repositories, dataUser } = useUser();
+  const { repositories, dataUser } = useGitHub();
   return (
     <Container>
       <Header>
