@@ -13,11 +13,11 @@ interface FollowingDataProps {
 }
 
 const Following = ({ following }: FollowingDataProps) => {
-  const { handleUserCall, handleGitUser, gitUser } = useGitHub();
+  const { handleUserCall, handleGitUser } = useGitHub();
 
   useEffect(() => {
     handleGitUser(following.login);
-  }, [gitUser]);
+  }, [handleGitUser, following.login]);
 
   return (
     <Container>

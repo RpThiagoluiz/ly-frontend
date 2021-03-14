@@ -10,31 +10,40 @@ import {
   UserDateForm,
   Input,
   RightArrowIcon,
+  ErrorContainer,
+  ErrorImage,
 } from "./styles";
 
 const SingIn = () => {
   const { handleUserCall, handleGitUser, gitUser, error } = useGitHub();
   const { singIn } = useAuth();
 
+  useEffect(() => {}, [gitUser, handleUserCall]);
+
+  //NoRefresh, for checks
   const noRefresh: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
     handleUserCall();
   };
 
-  useEffect(() => {}, [gitUser]);
-
   return (
     <Container>
       <GithubIcon />
       <UserDateForm onSubmit={() => singIn(gitUser)}>
+        {error.show && (
+          <ErrorContainer>
+            <ErrorImage />
+            <p>{error.message}</p>
+          </ErrorContainer>
+        )}
         <Input
           className="errorTrue"
           type="text"
-          placeholder={error.show ? error.message : `Digite usuário valido`}
+          placeholder={`Digite usuário valido`}
           value={gitUser}
           onChange={(e) => handleGitUser(e.target.value)}
-        />
-        <button onClick={handleUserCall} type="submit">
+        />{" "}
+        <button onClick={noRefresh} type="submit">
           Entrar
           <RightArrowIcon />
         </button>

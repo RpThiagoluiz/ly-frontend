@@ -6,7 +6,7 @@ import { ThemeProvider } from "styled-components";
 import GlobalStyles from "./styles/GlobalStyles";
 
 //StaticTheme
-import darkTheme from "./styles/theme/dark";
+import { darkTheme } from "./styles/theme/dark";
 
 const App = () => (
   <ThemeProvider theme={darkTheme}>

@@ -17,7 +17,7 @@ const Follower = ({ follower }: FollowerDataProps) => {
 
   useEffect(() => {
     handleGitUser(follower.login);
-  }, [gitUser]);
+  }, [gitUser, handleGitUser, follower.login]);
 
   return (
     <Container>

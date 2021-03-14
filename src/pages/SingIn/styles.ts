@@ -3,6 +3,7 @@ import styled, { keyframes } from "styled-components";
 //Icons
 import { ArrowRight } from "@styled-icons/fa-solid/ArrowRight";
 import { Github } from "@styled-icons/bootstrap/Github";
+import { ErrorCircle } from "@styled-icons/boxicons-solid/ErrorCircle";
 
 const animate = keyframes`
 0%{
@@ -32,6 +33,8 @@ export const Container = styled.div`
 `;
 
 export const UserDateForm = styled.form`
+  position: relative;
+
   > button {
     display: flex;
     align-items: center;
@@ -80,4 +83,27 @@ export const RightArrowIcon = styled(ArrowRight)`
   width: 18px;
   height: 18px;
   margin-left: 13px;
+`;
+
+export const ErrorContainer = styled.span`
+  position: absolute;
+  top: 28px;
+  left: 170px;
+  width: 90vw;
+
+  display: flex;
+  align-items: center;
+
+  p {
+    color: ${({ theme }) => theme.colors.buttons.red};
+  }
+`;
+
+export const ErrorImage = styled(ErrorCircle)`
+  width: 16px;
+  height: 16px;
+
+  margin-right: 2px;
+
+  color: ${({ theme }) => theme.colors.buttons.red};
 `;
