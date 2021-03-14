@@ -32,21 +32,6 @@ export const Container = styled.div`
 `;
 
 export const UserDateForm = styled.form`
-  > input {
-    width: 340px;
-
-    margin: 48px 0;
-    padding: 12px;
-
-    border: 1px solid #e5e5e5;
-    border-radius: 7px;
-    box-shadow: 0 3px 6px #0000001d;
-
-    font-size: 20px;
-
-    color: ${({ theme }) => theme.colors.text.gray};
-  }
-
   > button {
     display: flex;
     align-items: center;
@@ -64,6 +49,21 @@ export const UserDateForm = styled.form`
 
     background-color: ${({ theme }) => theme.colors.buttons.yellow};
   }
+`;
+
+export const Input = styled.input`
+  width: 340px;
+
+  margin: 48px 0;
+  padding: 12px;
+
+  border: 1px solid #e5e5e5;
+  border-radius: 7px;
+  box-shadow: 0 3px 6px #0000001d;
+
+  font-size: 20px;
+
+  color: ${({ theme }) => theme.colors.text.gray};
 `;
 
 export const GithubIcon = styled(Github)`

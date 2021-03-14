@@ -5,7 +5,7 @@ import SingIn from "../pages/SingIn";
 
 const AuthRoutes = () => (
   <Switch>
-    <Route path="/" exact component={SingIn} />
+    <Route path="/" component={SingIn} />
   </Switch>
 );
 export default AuthRoutes;
