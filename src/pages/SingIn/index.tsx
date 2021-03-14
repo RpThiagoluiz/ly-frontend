@@ -1,4 +1,4 @@
-import { MouseEventHandler } from "react";
+import { MouseEventHandler, useEffect } from "react";
 //hook
 import { useAuth } from "../../hook/auth";
 import { useGitHub } from "../../hook/ApiCallContext";
@@ -13,14 +13,15 @@ import {
 } from "./styles";
 
 const SingIn = () => {
-  const { handleUserCall, handleGitUser, gitUser } = useGitHub();
+  const { handleUserCall, handleGitUser, gitUser, error } = useGitHub();
   const { singIn } = useAuth();
-  const { error } = useGitHub();
 
   const noRefresh: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
     handleUserCall();
   };
+
+  useEffect(() => {}, [gitUser]);
 
   return (
     <Container>

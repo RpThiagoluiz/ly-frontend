@@ -13,7 +13,7 @@ const Followers = () => {
 
   const successFollowers = () =>
     followersUser.map((follower) => (
-      <Follower key={follower.login} followers={follower} />
+      <Follower key={follower.login} follower={follower} />
     ));
 
   return (

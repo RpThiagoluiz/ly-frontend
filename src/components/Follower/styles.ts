@@ -69,6 +69,9 @@ export const Content = styled.div`
   > p {
     font-size: 16px;
   }
+  > button {
+    background: transparent;
+  }
 `;
 
 export const RightArrowIcon = styled(ArrowRight)`
@@ -77,4 +80,6 @@ export const RightArrowIcon = styled(ArrowRight)`
 
   margin-right: 15px;
   cursor: pointer;
+
+  color: ${({ theme }) => theme.colors.details.white};
 `;
