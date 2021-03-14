@@ -4,7 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import Home from "../pages/Home";
 import Repos from "../pages/Repos";
 import Followers from "../pages/Followers";
-import Following from "../pages/Following";
+import Followings from "../pages/Followings";
 
 const AppRoutes = () => (
   <Switch>
@@ -12,7 +12,7 @@ const AppRoutes = () => (
     <Route path="/home" component={Home} />
     <Route path="/repositorios" component={Repos} />
     <Route path="/seguidores" component={Followers} />
-    <Route path="/seguindo" component={Following} />
+    <Route path="/seguindo" component={Followings} />
   </Switch>
 );
 

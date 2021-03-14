@@ -1,21 +1,14 @@
-import {
-  createContext,
-  useState,
-  useContext,
-  useEffect,
-  ReactNode,
-} from "react";
+import { createContext, useState, useContext, ReactNode } from "react";
 import axios from "axios";
-import { errorMonitor } from "node:events";
 
 interface GitHubContext {
   gitUser: string;
   dataUser: User;
   repositories: Repository[];
   followersUser: Followers[];
+  followingUser: Following[];
   isLoading: Boolean;
   error: Error;
-  maxRequestsApiCall: number;
   handleUserCall(): void;
   handleGitUser(name: string): void;
 }
@@ -58,6 +51,12 @@ interface Followers {
   url: string;
 }
 
+interface Following {
+  login: string;
+  avatar_url: string;
+  url: string;
+}
+
 interface Error {
   show: boolean;
   message: string;
@@ -69,6 +68,7 @@ const GitHubProvider = ({ children }: HandleUserCallProps) => {
   const [gitUser, setGitUser] = useState("");
   const [repositories, setRepositories] = useState<Repository[]>([]);
   const [followersUser, setFollowersUser] = useState<Followers[]>([]);
+  const [followingUser, setFollowingUser] = useState<Following[]>([]);
 
   const [dataUser, setDataUser] = useState<User>({
     login: "",
@@ -93,10 +93,14 @@ const GitHubProvider = ({ children }: HandleUserCallProps) => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState({ show: false, message: "" });
-  const [maxRequestsApiCall, setMaxRequestsApiCall] = useState(0);
 
   const handleGitUser = (name: string) => {
     setGitUser(name);
+  };
+
+  //Error!
+  const toggleError = (show = false, message = "") => {
+    setError({ show, message });
   };
 
   const handleUserCall = async () => {
@@ -105,53 +109,36 @@ const GitHubProvider = ({ children }: HandleUserCallProps) => {
     const userApi = `https://api.github.com/users/${gitUser}`;
     const repoUserApi = `https://api.github.com/users/${gitUser}/repos`;
     const followersApi = `https://api.github.com/users/${gitUser}/followers`;
+    const followingApi = `https://api.github.com/users/${gitUser}/following`;
 
     try {
       const reponse = await axios.get<User>(userApi);
       setDataUser(reponse.data);
+      setIsLoading(false);
     } catch (err) {
-      console.log(err);
+      toggleError(true, "Usário Inexistente!");
+      console.log(err, error);
+      setIsLoading(false);
       return;
     }
 
     const getRepoUserInfo = axios.get<Repository[]>(repoUserApi);
     const getFollowersInfo = axios.get<Followers[]>(followersApi);
+    const getFollowingApi = axios.get<Following[]>(followingApi);
 
     try {
-      const [repoData, followerData] = await Promise.all([
+      const [repoData, followerData, followingData] = await Promise.all([
         getRepoUserInfo,
         getFollowersInfo,
+        getFollowingApi,
       ]);
       setRepositories(repoData.data);
       setFollowersUser(followerData.data);
+      setFollowingUser(followingData.data);
     } catch (err) {
       console.log(err);
     }
   };
-
-  //Github Have a max request for hour. If u dont use token!
-  const maxGitRequets = () => {
-    axios
-      .get("https://api.github.com/rate_limit")
-      .then(({ data }) => {
-        let {
-          rate: { remaing },
-        } = data;
-        setMaxRequestsApiCall(remaing);
-        if (remaing === 0) {
-          toggleError(true, "Número máximo de req/h excedido!");
-        }
-      })
-      .catch((err) => console.log(err));
-  };
-
-  const toggleError = (show = false, message = "") => {
-    setError({ show, message });
-  };
-
-  useEffect(() => {
-    maxGitRequets();
-  }, []);
 
   return (
     <GitHubContext.Provider
@@ -162,9 +149,9 @@ const GitHubProvider = ({ children }: HandleUserCallProps) => {
         gitUser,
         repositories,
         followersUser,
+        followingUser,
         isLoading,
         error,
-        maxRequestsApiCall,
       }}
     >
       {children}

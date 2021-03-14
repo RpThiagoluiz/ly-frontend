@@ -13,7 +13,6 @@ const SingIn = () => {
     gitUser,
     isLoading,
     error,
-    maxRequestsApiCall,
   } = useGitHub();
   const { singIn } = useAuth();
 
@@ -28,7 +27,7 @@ const SingIn = () => {
       <UserDateForm onSubmit={() => singIn(gitUser)}>
         <input
           type="text"
-          placeholder={error.show ? error.message : `Digite usuário valido`}
+          placeholder={`Digite usuário valido`}
           value={gitUser}
           onChange={(e) => handleGitUser(e.target.value)}
         />
