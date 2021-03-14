@@ -7,19 +7,8 @@ import { useGitHub } from "../../hook/ApiCallContext";
 import { Container, GithubIcon, UserDateForm, RightArrowIcon } from "./styles";
 
 const SingIn = () => {
-  const {
-    handleUserCall,
-    handleGitUser,
-    gitUser,
-    isLoading,
-    error,
-  } = useGitHub();
+  const { handleUserCall, handleGitUser, gitUser } = useGitHub();
   const { singIn } = useAuth();
-
-  useEffect(() => {
-    handleUserCall();
-    handleGitUser(gitUser);
-  }, []);
 
   return (
     <Container>
@@ -31,7 +20,6 @@ const SingIn = () => {
           value={gitUser}
           onChange={(e) => handleGitUser(e.target.value)}
         />
-
         <button onClick={handleUserCall} type="submit">
           Entrar
           <RightArrowIcon />

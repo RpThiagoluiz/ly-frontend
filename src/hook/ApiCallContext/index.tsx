@@ -104,7 +104,6 @@ const GitHubProvider = ({ children }: HandleUserCallProps) => {
   };
 
   const handleUserCall = async () => {
-    toggleError();
     setIsLoading(true);
     const userApi = `https://api.github.com/users/${gitUser}`;
     const repoUserApi = `https://api.github.com/users/${gitUser}/repos`;
