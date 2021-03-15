@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-
 //ContextApi
 import { AuthProvider } from "./hook/auth";
 import { GitHubProvider } from "./hook/ApiCallContext";

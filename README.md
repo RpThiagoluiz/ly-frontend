@@ -1,6 +1,7 @@
 # Ly - test Frontend ReactJS
 
 **pt-br**
+</br>
 App desenvolvido durante um teste.
 O link do app esta aq [Netfly](https://ly-frontend-test-reactjs.netlify.app),ou segue as instrucoes para instalacao local.
 
@@ -32,6 +33,7 @@ O call da api do GitHub tem um limite. para resolver. [403 solved!](https://docs
 - [ ] Implementar um botao de salvar o usuario.
 
 **En-us**
+</br>
 App developed during a test.
 The link of the app is here [Netfly] (https://ly-frontend-test-reactjs.netlify.app), or follows according to the instructions for local installation.
 
