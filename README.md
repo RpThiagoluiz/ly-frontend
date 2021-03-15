@@ -35,13 +35,13 @@ O call da api do GitHub tem um limite. para resolver. [403 solved!](https://docs
 **En-us**
 </br>
 App developed during a test.
-The link of the app is here [Netfly] (https://ly-frontend-test-reactjs.netlify.app), or follows according to the instructions for local installation.
+The link of the app is here [Netlify](https://ly-frontend-test-reactjs.netlify.app), or follows according to the instructions for local installation.
 
 **_Install_**
 
 ### `yarn install` or using npm
 
-The project will run at [http: // localhost: 3000] (http: // localhost: 3000).
+The project will run at [localhost: 3000](http://localhost:3000).
 
 ** Were used **
 
@@ -52,7 +52,7 @@ The project will run at [http: // localhost: 3000] (http: // localhost: 3000).
 - ReactJS,
 - Axios,
 
-The GitHub api call has a limit. to resolve. [403 resolved!] (Http://docs.github.com/en/rest/overview/resources-in-the-rest-api).
+The GitHub api call has a limit. to resolve. [403 resolved!](Http://docs.github.com/en/rest/overview/resources-in-the-rest-api).
 
 ## Missing || Need to be improved
 
