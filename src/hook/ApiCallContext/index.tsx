@@ -1,10 +1,4 @@
-import {
-  createContext,
-  useState,
-  useEffect,
-  useContext,
-  ReactNode,
-} from "react";
+import { createContext, useState, useContext, ReactNode } from "react";
 import axios from "axios";
 
 interface GitHubContext {
