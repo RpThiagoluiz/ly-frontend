@@ -6,13 +6,14 @@ import UserProfile from "../../components/UserProfile";
 import { useGitHub } from "../../hook/ApiCallContext";
 
 //Styles
-import { Container } from "./styles";
+import { Container, Spinner } from "./styles";
 
 const Home = () => {
-  const { dataUser } = useGitHub();
+  const { dataUser, isLoading } = useGitHub();
+
   return (
     <Container>
-      <UserProfile user={dataUser} />
+      {isLoading ? <Spinner /> : <UserProfile user={dataUser} />}
       <NavBar />
     </Container>
   );

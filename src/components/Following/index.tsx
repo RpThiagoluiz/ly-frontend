@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { MouseEventHandler } from "react";
 import { Link } from "react-router-dom";
 import { useGitHub } from "../../hook/ApiCallContext";
 //Styles
@@ -13,18 +13,18 @@ interface FollowingDataProps {
 }
 
 const Following = ({ following }: FollowingDataProps) => {
-  const { handleUserCall, handleGitUser } = useGitHub();
+  const { changeUser } = useGitHub();
 
-  useEffect(() => {
-    handleGitUser(following.login);
-  }, [handleGitUser, following.login]);
+  const handleChangeUser: MouseEventHandler<HTMLButtonElement> = () => {
+    changeUser(following.login);
+  };
 
   return (
     <Container>
       <img src={following.avatar_url} alt="Avatar pessoal" />
       <Content>
         <p>#{following.login}</p>
-        <button onClick={handleUserCall}>
+        <button onClick={handleChangeUser} type="button">
           <Link to="/home">
             <RightArrowIcon />
           </Link>

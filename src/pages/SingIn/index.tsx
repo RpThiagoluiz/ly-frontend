@@ -42,8 +42,8 @@ const SingIn = () => {
           placeholder={`Digite usuário valido`}
           value={gitUser}
           onChange={(e) => handleGitUser(e.target.value)}
-        />{" "}
-        <button onClick={noRefresh} type="submit">
+        />
+        <button onClick={handleUserCall} type="submit">
           Entrar
           <RightArrowIcon />
         </button>

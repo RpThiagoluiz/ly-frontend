@@ -1,4 +1,10 @@
-import { createContext, useState, useContext, ReactNode } from "react";
+import {
+  createContext,
+  useState,
+  useEffect,
+  useContext,
+  ReactNode,
+} from "react";
 import axios from "axios";
 
 interface GitHubContext {
@@ -11,6 +17,7 @@ interface GitHubContext {
   error: Error;
   handleUserCall(): void;
   handleGitUser(name: string): void;
+  changeUser(name: string): void;
 }
 
 interface HandleUserCallProps {
@@ -103,6 +110,11 @@ const GitHubProvider = ({ children }: HandleUserCallProps) => {
     setError({ show, message });
   };
 
+  const changeUser = (name: string) => {
+    setGitUser(name);
+    handleUserCall();
+  };
+
   const handleUserCall = async () => {
     toggleError();
     setIsLoading(true);
@@ -145,6 +157,7 @@ const GitHubProvider = ({ children }: HandleUserCallProps) => {
       value={{
         handleUserCall,
         handleGitUser,
+        changeUser,
         dataUser,
         gitUser,
         repositories,
