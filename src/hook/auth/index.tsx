@@ -19,7 +19,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     return !!isLogged;
   });
 
-  const { error } = useGitHub();
+  const { error, handleGitUser } = useGitHub();
 
   const singIn = (gitName: string) => {
     if (gitName !== "" && !error) {

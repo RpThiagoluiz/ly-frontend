@@ -1,22 +1,16 @@
 import styled, { keyframes } from "styled-components";
 
 //Icons
-import { Exit } from "@styled-icons/ionicons-outline/Exit";
+import { Save } from "@styled-icons/bootstrap/Save";
 
 const animate = keyframes`
 0%{
-  transform: translateY(-200px);
+  transform: translate(-100px);
   opacity:0;
-}
-25% {
-  opacity:0.2;
 }
 
 50% {
-  opacity:0.5;
-}
-75% {
-  opacity:0.8;
+  opacity:0.3;
 }
 
 100% {
@@ -72,7 +66,6 @@ export const UserInfo = styled.section`
   flex-direction: column;
 
   padding: 24px;
-  animation: ${animate} 1.8s ease-in;
 
   > h2 {
     margin-bottom: 4px;
@@ -83,7 +76,6 @@ export const UserInfo = styled.section`
     margin-bottom: 2px;
     font-size: 18px;
   }
-
   &::before {
     content: "";
 
@@ -97,6 +89,8 @@ export const UserInfo = styled.section`
 
     background-color: ${({ theme }) => theme.colors.buttons.yellow};
   }
+
+  animation: ${animate}.3s ease-in;
 
   @media (max-width: 840px) {
     > h2 {
@@ -218,13 +212,14 @@ export const UserBioInfo = styled.section`
   }
 `;
 
-export const ExitIcon = styled(Exit)`
+export const SaveIcon = styled(Save)`
   width: 24px;
   height: 24px;
 
   margin-left: 12px;
+  transform: rotate(90deg);
 
-  color: ${({ theme }) => theme.colors.buttons.red};
+  color: ${({ theme }) => theme.colors.buttons.green};
 
   cursor: pointer;
 `;

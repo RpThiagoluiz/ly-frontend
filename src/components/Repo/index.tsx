@@ -28,7 +28,6 @@ const Repo = ({ repository }: RepoDataProps) => (
         <StarIcon />
         <span>{repository.stargazers_count}</span>
       </div>
-
       <div>
         <UnlockIcon />
         <LockIcon />

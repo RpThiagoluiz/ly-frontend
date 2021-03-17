@@ -5,12 +5,18 @@ import { ArrowRight } from "@styled-icons/fa-solid/ArrowRight";
 
 const animate = keyframes`
 0%{
-  transform: translate(-100px);
+  transform: translateY(-200px);
   opacity:0;
+}
+25% {
+  opacity:0.2;
 }
 
 50% {
-  opacity:0.3;
+  opacity:0.5;
+}
+75% {
+  opacity:0.8;
 }
 
 100% {
@@ -30,6 +36,8 @@ export const Container = styled.section`
   justify-content: right;
 
   border-bottom: 1px solid ${({ theme }) => theme.colors.details.grayTeriary};
+  animation: ${animate} 1.3s ease-in;
+  transition: all 0.2s;
 
   > img {
     width: 64px;
@@ -54,7 +62,13 @@ export const Container = styled.section`
     background-color: ${({ theme }) => theme.colors.buttons.yellow};
   }
 
-  animation: ${animate}1.2s ease-in;
+  &:hover {
+    filter: brightness(1.3);
+
+    > img {
+      box-shadow: 2px 3px 2px 2px rgba(0, 0, 0, 0.3);
+    }
+  }
 `;
 
 export const Content = styled.div`

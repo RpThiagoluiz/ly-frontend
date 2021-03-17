@@ -7,12 +7,18 @@ import { Unlock } from "@styled-icons/bootstrap/Unlock";
 
 const animate = keyframes`
 0%{
-  transform: translate(-100px);
+  transform: translateY(-200px);
   opacity:0;
+}
+25% {
+  opacity:0.2;
 }
 
 50% {
-  opacity:0.3;
+  opacity:0.5;
+}
+75% {
+  opacity:0.8;
 }
 
 100% {
@@ -29,6 +35,9 @@ export const Container = styled.section`
   padding: 18px;
 
   border-bottom: 1px solid ${({ theme }) => theme.colors.details.grayTeriary};
+  overflow-x: hidden;
+
+  animation: ${animate} 1.3s ease-in;
 
   &::before {
     content: "";
@@ -43,10 +52,6 @@ export const Container = styled.section`
 
     background-color: ${({ theme }) => theme.colors.buttons.yellow};
   }
-
-  overflow-x: hidden;
-
-  animation: ${animate}.9s ease-in-out;
 `;
 
 export const Content = styled.section`

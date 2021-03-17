@@ -1,6 +1,6 @@
 import { MouseEventHandler } from "react";
 import { Link } from "react-router-dom";
-import { useGitHub } from "../../hook/ApiCallContext";
+import { useGitHubFollow } from "../../hook/FollowerFollowingContext";
 //Styles
 import { Container, Content, RightArrowIcon } from "./styles";
 
@@ -13,10 +13,11 @@ interface FollowingDataProps {
 }
 
 const Following = ({ following }: FollowingDataProps) => {
-  const { changeUser } = useGitHub();
+  const { followData, dataFollow } = useGitHubFollow();
 
   const handleChangeUser: MouseEventHandler<HTMLButtonElement> = () => {
-    changeUser(following.login);
+    followData(following.login);
+    console.log(dataFollow);
   };
 
   return (
@@ -25,7 +26,7 @@ const Following = ({ following }: FollowingDataProps) => {
       <Content>
         <p>#{following.login}</p>
         <button onClick={handleChangeUser} type="button">
-          <Link to="/home">
+          <Link to={`/seguidor/${following.login}`}>
             <RightArrowIcon />
           </Link>
         </button>

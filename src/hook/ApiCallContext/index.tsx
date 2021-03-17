@@ -1,7 +1,7 @@
 import { createContext, useState, useContext, ReactNode } from "react";
-import axios from "axios";
+import { api } from "../../services/api";
 
-interface GitHubContext {
+interface IGitHubContext {
   gitUser: string;
   dataUser: User;
   repositories: Repository[];
@@ -63,7 +63,7 @@ interface Error {
   message: string;
 }
 
-const GitHubContext = createContext<GitHubContext>({} as GitHubContext);
+const GitHubContext = createContext<IGitHubContext>({} as IGitHubContext);
 
 const GitHubProvider = ({ children }: HandleUserCallProps) => {
   const [gitUser, setGitUser] = useState("");
@@ -112,14 +112,9 @@ const GitHubProvider = ({ children }: HandleUserCallProps) => {
   const handleUserCall = async () => {
     toggleError();
     setIsLoading(true);
-    const userApi = `https://api.github.com/users/${gitUser}`;
-    const repoUserApi = `https://api.github.com/users/${gitUser}/repos`;
-    const followersApi = `https://api.github.com/users/${gitUser}/followers`;
-    const followingApi = `https://api.github.com/users/${gitUser}/following`;
-
     try {
-      const reponse = await axios.get<User>(userApi);
-      setDataUser(reponse.data);
+      const response = await api.get<User>(gitUser);
+      setDataUser(response.data);
       setIsLoading(false);
     } catch (err) {
       toggleError(true, "Usário Inexistente!");
@@ -128,9 +123,9 @@ const GitHubProvider = ({ children }: HandleUserCallProps) => {
       return;
     }
 
-    const getRepoUserInfo = axios.get<Repository[]>(repoUserApi);
-    const getFollowersInfo = axios.get<Followers[]>(followersApi);
-    const getFollowingApi = axios.get<Following[]>(followingApi);
+    const getRepoUserInfo = api.get<Repository[]>(`${gitUser}/repos`);
+    const getFollowersInfo = api.get<Followers[]>(`${gitUser}/followers`);
+    const getFollowingApi = api.get<Following[]>(`${gitUser}/following`);
 
     try {
       const [repoData, followerData, followingData] = await Promise.all([

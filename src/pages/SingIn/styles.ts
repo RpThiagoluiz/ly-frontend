@@ -51,6 +51,11 @@ export const UserDateForm = styled.form`
     box-shadow: 0 3px 6px #0000001d;
 
     background-color: ${({ theme }) => theme.colors.buttons.yellow};
+
+    transition: filter 0.3s;
+    &:hover {
+      filter: brightness(0.7);
+    }
   }
 `;
 
